@@ -1,7 +1,34 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
+import ChooseMangoType from "../components/FormSteps/ChooseMangoType";
+import Location from "../components/FormSteps/Location";
+import CourierService from "../components/FormSteps/CourierService";
+
+const Screens = [ChooseMangoType, Location, CourierService];
 
 const Home: NextPage = () => {
+  const [activeNav, setActiveNav] = useState(0);
+  const navChangehandler = (navId: number) => {
+    setActiveNav(navId);
+  };
+
+  const nextHandler = () => {
+    if (activeNav >= 0 && activeNav <= 2) {
+      setActiveNav(activeNav + 1);
+    }
+  };
+
+  const prevHandler = () => {
+    if (activeNav >= 0 && activeNav <= 2) {
+      setActiveNav(activeNav - 1);
+    }
+  };
+
+  // console.log(activeNav);
+
+  const ActiveScreen = Screens[activeNav];
+
   return (
     <div>
       <Head>
@@ -10,7 +37,63 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main></main>
+      <main
+        style={{
+          backgroundImage: "url('/img/green.jpg')",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="backdrop-blur-xl bg-white/30 w-full h-screen text-center pt-[100px]">
+          <div className=" navBtns flex items-center justify-center mb-[15px] space-x-4">
+            <button
+              className={`w-[90px] h-[11px] rounded-[20px]  ${
+                activeNav === 0 ? "bg-[#1d7c1d]" : "bg-[#8d8282]"
+              }`}
+              onClick={() => navChangehandler(0)}
+            ></button>
+            <button
+              className={`w-[90px] h-[11px] rounded-[20px]  ${
+                activeNav === 1 ? "bg-[#1d7c1d]" : "bg-[#8d8282]"
+              }`}
+              onClick={() => navChangehandler(1)}
+            ></button>
+            <button
+              className={`w-[90px] h-[11px] rounded-[20px]  ${
+                activeNav === 2 ? "bg-[#1d7c1d]" : "bg-[#8d8282]"
+              }`}
+              onClick={() => navChangehandler(2)}
+            ></button>
+          </div>
+          <div className="flex items-center justify-center text-left">
+            <ActiveScreen />
+          </div>
+          <div className=" flex items-center justify-center space-x-[200px] mt-[30px]">
+            {activeNav !== 0 ? (
+              <button
+                className=" bg-[#1d7c1d] text-white w-[100px] h-[40px] rounded-[5px] uppercase"
+                onClick={prevHandler}
+              >
+                Previous
+              </button>
+            ) : (
+              <p className="w-[100px]"></p>
+            )}
+
+            {activeNav !== 2 ? (
+              <button
+                className=" bg-[#1d7c1d] text-white w-[100px] h-[40px] rounded-[5px] uppercase"
+                onClick={nextHandler}
+              >
+                next
+              </button>
+            ) : (
+              <p className="w-[100px]"></p>
+            )}
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
