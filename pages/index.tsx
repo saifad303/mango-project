@@ -89,7 +89,12 @@ const Home: NextPage = () => {
                 next
               </button>
             ) : (
-              <p className="w-[100px]"></p>
+              <button
+                className=" bg-[#71ad1d] text-white w-[100px] h-[40px] rounded-[5px] uppercase"
+                onClick={nextHandler}
+              >
+                Submit
+              </button>
             )}
           </div>
         </div>
