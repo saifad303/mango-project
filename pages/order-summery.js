@@ -63,8 +63,13 @@ function OrderSummery() {
               <button className=" w-[160px] h-[38px] bg-[#49B050] text-white mt-[20px] rounded-[5px]">
                 অর্ডার পরিবর্তন
               </button>
-              <button className=" w-[150px] h-[38px] bg-[#49B050] text-white mt-[20px] rounded-[5px]">
-                পেমেন্ট করুন
+              <button className=" bg-white text-[#E2136E] mt-[20px] border-[1px] border-[#E2136E] rounded-[5px] flex items-center justify-center py-[6px] px-[5px]">
+                <img
+                  src="/img/bkash.svg"
+                  className=" w-[28px] h-[23px]"
+                  alt=""
+                />
+                <p>বিকাশ পেমেন্ট</p>
               </button>
             </div>
           </div>
